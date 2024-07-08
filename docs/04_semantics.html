@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Semantics for Linguistic Data Science</title><link rel="stylesheet" href="dist/reset.css"><link rel="stylesheet" href="dist/reveal.css"><link rel="stylesheet" href="dist/theme/beige.css"><link rel="stylesheet" href="plugin/highlight/monokai.css"><div class="reveal"><div class="slides"><section data-background-image="img/semantics1.png" data-background-opacity="0.5"><div><h1>Semantics</h1><h3>John P. McCrae - University of Galway</h3><h5>Course at ESSLLI 2024</h5><div style="z-index:100;position:absolute;left:70%;top:110%;width:450px;"><img src="img/uog.svg"></div></div></section><section data-background-image="https://i.makeagif.com/media/6-07-2022/0QaCig.gif" data-background-opacity="0.5"><h1>Vector space models</h1></section><section><h2>Vector space models</h2><p>Mathematical model for representing text as a vector of numbers. </p><p>Enables linear algebra to analyse text.</p></section><section><h2>Term-document matrix</h2><p>A term-document matrix is a matrix where each row represents a term and each column represents a document.</p><table> <tr><td></td><td>Document 1</td><td>Document 2</td><td>Document 3</td></tr><tr><td>Term 1</td><td>1</td><td>0</td><td>1</td></tr><tr><td>Term 2</td><td>0</td><td>1</td><td>1</td></tr><tr><td>Term 3</td><td>1</td><td>1</td><td>0</td></tr></table></section><section><h2>Term-document matrix</h2><p>Python example</p><pre><code lang="python">term_document_matrix = np.zeros((len(vocabulary), len(documents)))
+for doc in documents:
+    for term in doc:
+      term_document_matrix[term][doc] += 1</code></pre></section><section><h2>Similarity measures</h2><p>Cosine similarity (angle between vectors)</p><p>Euclidean distance (distance between vectors)</p><pre><code lang="python">from sklearn.metrics.pairwise import (cosine_similarity, 
+  euclidean_distance)
+
+cosine_similarity(term_document_matrix[0], 
+                  term_document_matrix[1])
+euclidean_distance(term_document_matrix[0], 
+                   term_document_matrix[1])</code></pre></section><section><h2>Term-document matrix</h2><p>Very large</p><p>Very sparse (many zeros)</p><p>Not very informative</p></section><section data-background-image="img/words_and_numbers.png" data-background-opacity="0.5"><h1>Word embeddings</h1></section><section><h2>Word embeddings</h2><p>Instead of a large vector compress all this information into a small vector.</p><img src="img/embedding_compress.svg"></section><section><h2>Word embeddings - Autoencoders</h2><img src="img/autoencoder.svg"></section><section><h2>Word embeddings - Word2Vec</h2><img src="img/word2vec.svg"></section><section><h2>Analogy</h2><p>Word vectors capture linguistic regularities</p><p>vec(Berlin) ≃ vec(Germany) + vec(Paris) - vec(France)</p><img src="img/analogy.svg" width="50%"></section><section data-background-image="img/selection.png" data-background-opacity="0.5"><h1>Understanding semantic spaces</h1></section><section><h2>Loading word embeddings</h2><p>We will use the <a href="https://nlp.stanford.edu/projects/glove/">GloVe</a> vectors</p><pre><code language="python">from gensim.models import KeyedVectors
+glove = KeyedVectors.load_word2vec_format('glove.6B.50d.txt', 
+                            binary=False, no_header=True)</code></pre></section><section><h2>Most similar words</h2><pre><code language="python">glove.most_similar("slovenia")
+[('slovakia', 0.8620874881744385),
+ ('moldova', 0.8049129843711853),
+ ('estonia', 0.7930541634559631),
+ ('montenegro', 0.7922329306602478),
+ ('latvia', 0.7799606323242188),
+ ('croatia', 0.7645576596260071)]</code></pre></section><section><h2>Analogy</h2><pre><code language="python">def analogy(x1, x2, y1):
+  result = glove.most_similar(positive=[y1, x2], 
+                              negative=[x1])
+  return result[0][0]</code></pre></section><section><h2>PCA and t-SNE</h2><ul><li>Word embeddings have many dimensions</li><li>Reduce to 2 dimensions to visualise</li><ul><li>Principal Component Analysis (PCA) - linear</li><li>t-distributed Stochastic Neighbour Embedding (t-SNE) - non-linear</li></ul></ul></section><section><h2>Visualisation with PCA</h2><img src="img/pca_plot.png" width="50%"></section><section data-background-image="img/pretraining.png" data-background-opacity="0.5"><h1>Pretrained language models</h1></section><section><h2>Language Models</h2><p>A language model is a function that calculates the likelihood of a string of words.</p><p>P("this string") = 0.0001</p></section><section><h2>What's the big deal???</h2><p>The probability of text is higher if the text is:</p><ul> <li>In a language</li><li>Grammatically order</li><li>Coherent</li><li>Plausible</li></ul></section><section><h2>Generative Language Models</h2><p>Languages models can generate text</p><p>\[ \max_{w \in \mathrm{vocabulary}} p(\mathrm{what~is~the~next~} w)\]</p><p>Repeating this allows us to generate text</p></section><section><h2>Pretraining</h2><p>Most models are trained <em>autoregressively</em></p><p>Can you guess the word?</p><ul><li class="fragment">for the humanities,  literature and culture in the ????</li><li class="fragment">the theme of the album is the life of the ??? </li><li class="fragment">shipping in the caribbean and off the ???</li><li class="fragment">she was the daughter of an african ???</li></ul></section><section><h1>Guess the word</h1></section><section><h2>Transformers</h2><ul><li>Most popular architecture at the moment</li><li>Why transformers?</li><li>Natural language is hard to do math with:</li><ul><li>Words not numbers</li><li>Sentences of different lengths</li></ul></ul></section><section><h2>Transformers</h2><img src="img/transformers.svg" width="50%"></section><section><h2>ChatGPT</h2><p style="font-size:1.5em"><b>G</b>enerative <b>P</b>re-Trained <b>T</b>ransfomer</p></section><section data-background-image="img/prompt_engineering.png" data-background-opacity="0.5"><h1>Prompt Engineering</h1></section><section><h2>Prompt Engineering</h2><ul><li>Large (>10B parameter) models demonstrate emergent properties</li><li>Using the correct initial text (prompt) we can extra information from the language model</li><li><a href="https://huggingface.co/google/flan-t5-base">Huggingface Hub</a></li></ul></section><section><h2>Zero-shot prompting</h2><p>Input:</p><pre>Classify the text into neutral, negative or positive. 
+Text: I think the vacation is okay.
+Sentiment: </pre><p>Output:</p><pre>positive</pre></section><section><h2>Few-shot prompting</h2><p>Input:</p><pre> workable: work
+edible: eat
+visible: see
+readable:</pre><p>Ouput:</p><pre>read</pre></section><section><h2>Chain-of-thought prompting</h2><p>Input:</p><pre>Q: The odd numbers in this group add up to an even 
+number: 4, 8, 9, 15, 12, 2, 1.
+A: Adding all the odd numbers (9, 15, 1) gives 25. 
+The answer is False.
+The odd numbers in this group add up to an even 
+number: 15, 32, 5, 13, 82, 7, 1. </pre><p>Output:</p><pre>Adding all the odd numbers (15, 5, 13, 7, 1) gives 41. 
+The answer is False.</pre></section><section><h2>Self-evaluation</h2><p>Input:</p><pre><What>is 9 + 10?</What></pre><p>Output:</p><pre>21</pre><p>Input:</p><pre>What is 9 + 10?
+21
+Do you think 21 is the correct answer?</pre><p>Output:</p><pre>No</pre></section><section><h1>Hands-on: Word Sense Induction</h1></section><section data-background-image="img/semantics2.png" data-background-opacity="0.5"><h1>Summary</h1></section><section><h2>Summary</h2><ul><li>Vectors allow us to do maths with language</li><li>Word embeddings reveal hidden semantic relations</li><li>Large language models show (astonishing) ability to generate <span style="color:coral">plausible</span> dialogue</li></ul><small> <a href="index.html">Back</a></small></section></div></div><script src="dist/reveal.js"></script><script src="plugin/notes/notes.js"></script><script src="plugin/markdown/markdown.js"></script><script src="plugin/highlight/highlight.js"></script><script src="plugin/math/math.js"></script><script>// More info about initialization & config:
+// - https://revealjs.com/initialization/
+// - https://revealjs.com/config/
+Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+});</script></head></html>
