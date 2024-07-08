@@ -1,0 +1,270 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title Semantics for Linguistic Data Science
+    link(rel="stylesheet" href="dist/reset.css")
+    link(rel="stylesheet" href="dist/reveal.css")
+    link(rel="stylesheet" href="dist/theme/beige.css")
+    link(rel="stylesheet" href="plugin/highlight/monokai.css")
+    div(class="reveal")
+      div(class="slides")
+        section(data-background-image="img/semantics1.png" data-background-opacity=0.5)
+          div
+            h1 Semantics
+            h3 John P. McCrae - University of Galway
+            h5 Course at ESSLLI 2024
+            div(style="z-index:100;position:absolute;left:70%;top:110%;width:450px;")
+                img(src="img/uog.svg") 
+        section(data-background-image="https://i.makeagif.com/media/6-07-2022/0QaCig.gif" data-background-opacity=0.5)
+          h1 Vector space models
+        section
+          h2 Vector space models
+          p Mathematical model for representing text as a vector of numbers. 
+          p Enables linear algebra to analyse text.
+        section
+          h2 Term-document matrix
+          p A term-document matrix is a matrix where each row represents a term and each column represents a document.
+          table 
+            tr
+              td
+              td Document 1
+              td Document 2
+              td Document 3
+            tr
+              td Term 1
+              td 1
+              td 0
+              td 1
+            tr
+              td Term 2
+              td 0
+              td 1
+              td 1
+            tr
+              td Term 3
+              td 1
+              td 1
+              td 0
+        section
+          h2 Term-document matrix
+          p Python example
+          pre
+            code(lang="python").
+              term_document_matrix = np.zeros((len(vocabulary), len(documents)))
+              for doc in documents:
+                  for term in doc:
+                    term_document_matrix[term][doc] += 1
+        section
+          h2 Similarity measures
+          p Cosine similarity (angle between vectors)
+          p Euclidean distance (distance between vectors)
+          pre
+            code(lang="python").
+              from sklearn.metrics.pairwise import (cosine_similarity, 
+                euclidean_distance)
+
+              cosine_similarity(term_document_matrix[0], 
+                                term_document_matrix[1])
+              euclidean_distance(term_document_matrix[0], 
+                                 term_document_matrix[1])
+        section
+          h2 Term-document matrix
+          p Very large
+          p Very sparse (many zeros)
+          p Not very informative
+        section(data-background-image="img/words_and_numbers.png" data-background-opacity=0.5)
+          h1 Word embeddings
+        section
+          h2 Word embeddings
+          p Instead of a large vector compress all this information into a small vector.
+          img(src="img/embedding_compress.svg")
+        section
+          h2 Word embeddings - Autoencoders
+          img(src="img/autoencoder.svg")
+        section
+          h2 Word embeddings - Word2Vec
+          img(src="img/word2vec.svg")
+        section
+          h2 Analogy
+          p Word vectors capture linguistic regularities
+          
+          p vec(Berlin) ≃ vec(Germany) + vec(Paris) - vec(France)
+          img(src="img/analogy.svg" width="50%")
+        section(data-background-image="img/selection.png" data-background-opacity=0.5)
+          
+          h1 Understanding semantic spaces
+        section
+          h2 Loading word embeddings
+          p We will use the <a href="https://nlp.stanford.edu/projects/glove/">GloVe</a> vectors
+          pre
+            code(language="python").
+              from gensim.models import KeyedVectors
+              glove = KeyedVectors.load_word2vec_format('glove.6B.50d.txt', 
+                                          binary=False, no_header=True)
+        section
+          h2 Most similar words
+          pre
+            code(language="python").
+              glove.most_similar("slovenia")
+              [('slovakia', 0.8620874881744385),
+               ('moldova', 0.8049129843711853),
+               ('estonia', 0.7930541634559631),
+               ('montenegro', 0.7922329306602478),
+               ('latvia', 0.7799606323242188),
+               ('croatia', 0.7645576596260071)]
+        section
+          h2 Analogy
+          pre
+            code(language="python").
+              def analogy(x1, x2, y1):
+                result = glove.most_similar(positive=[y1, x2], 
+                                            negative=[x1])
+                return result[0][0]
+        section
+          h2 PCA and t-SNE
+          ul
+            li Word embeddings have many dimensions
+            li Reduce to 2 dimensions to visualise
+            ul
+              li Principal Component Analysis (PCA) - linear
+              li t-distributed Stochastic Neighbour Embedding (t-SNE) - non-linear
+        section
+          h2 Visualisation with PCA
+          img(src="img/pca_plot.png" width="50%")
+        section(data-background-image="img/pretraining.png" data-background-opacity=0.5)
+          h1 Pretrained language models
+        section
+          h2 Language Models
+          p A language model is a function that calculates the likelihood of a string of words.
+          p P("this string") = 0.0001
+        section
+          h2 What's the big deal???
+          p The probability of text is higher if the text is:
+          ul 
+            li In a language
+            li Grammatically order
+            li Coherent
+            li Plausible
+        section
+          h2 Generative Language Models
+          p Languages models can generate text
+
+          p \[ \max_{w \in \mathrm{vocabulary}} p(\mathrm{what~is~the~next~} w)\]
+          p Repeating this allows us to generate text
+        section
+          h2 Pretraining
+          p Most models are trained <em>autoregressively</em>
+          p Can you guess the word?
+          ul
+            li(class="fragment") for the humanities,  literature and culture in the ????
+            li(class="fragment") the theme of the album is the life of the ??? 
+            li(class="fragment") shipping in the caribbean and off the ???
+            li(class="fragment") she was the daughter of an african ???
+        section
+          h1 Guess the word
+        section
+          h2 Transformers
+          ul
+            li Most popular architecture at the moment
+            li Why transformers?
+            li Natural language is hard to do math with:
+            ul
+              li Words not numbers
+              li Sentences of different lengths
+        section
+          h2 Transformers
+          img(src="img/transformers.svg", width="50%")
+        section
+          h2 ChatGPT
+          p(style="font-size:1.5em") <b>G</b>enerative <b>P</b>re-Trained <b>T</b>ransfomer
+        section(data-background-image="img/prompt_engineering.png" data-background-opacity=0.5)
+          h1 Prompt Engineering
+        section
+          h2 Prompt Engineering
+          ul
+            li Large (>10B parameter) models demonstrate emergent properties
+            li Using the correct initial text (prompt) we can extra information from the language model
+            li
+              a(href="https://huggingface.co/google/flan-t5-base") Huggingface Hub
+        section
+          h2 Zero-shot prompting
+          p Input:
+          pre
+            | Classify the text into neutral, negative or positive. 
+            | Text: I think the vacation is okay.
+            | Sentiment: 
+          p Output:
+          pre
+            | positive
+        section
+          h2 Few-shot prompting
+          p Input:
+          pre 
+            | workable: work
+            | edible: eat
+            | visible: see
+            | readable:
+          p Ouput:
+          pre
+            | read
+        section
+          h2 Chain-of-thought prompting
+          p Input:
+          pre
+            | Q: The odd numbers in this group add up to an even 
+            | number: 4, 8, 9, 15, 12, 2, 1.
+            | A: Adding all the odd numbers (9, 15, 1) gives 25. 
+            | The answer is False.
+            | The odd numbers in this group add up to an even 
+            | number: 15, 32, 5, 13, 82, 7, 1. 
+          p Output:
+          pre
+            | Adding all the odd numbers (15, 5, 13, 7, 1) gives 41. 
+            | The answer is False.
+        section
+          h2 Self-evaluation
+          p Input:
+          pre
+            What is 9 + 10?
+          p Output:
+          pre
+            | 21
+          p Input:
+          pre
+            | What is 9 + 10?
+            | 21
+            | Do you think 21 is the correct answer?
+          p Output:
+          pre
+            | No
+        section
+          h1 Hands-on: Word Sense Induction
+        section(data-background-image="img/semantics2.png" data-background-opacity=0.5)
+          h1 Summary
+        section
+          h2 Summary
+          ul
+            li Vectors allow us to do maths with language
+            li Word embeddings reveal hidden semantic relations
+            li Large language models show (astonishing) ability to generate <span style="color:coral">plausible</span> dialogue
+          small 
+            a(href="index.html") Back
+    script(src="dist/reveal.js")
+    script(src="plugin/notes/notes.js")
+    script(src="plugin/markdown/markdown.js")
+    script(src="plugin/highlight/highlight.js")
+    script(src="plugin/math/math.js")
+    script.
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+              hash: true,
+              slideNumber: true,
+    
+              // Learn about plugins: https://revealjs.com/plugins/
+              plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+      });
+  

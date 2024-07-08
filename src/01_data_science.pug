@@ -1,0 +1,294 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title Fundamentals of Data Science
+    link(rel="stylesheet" href="dist/reset.css")
+    link(rel="stylesheet" href="dist/reveal.css")
+    link(rel="stylesheet" href="dist/theme/beige.css")
+    link(rel="stylesheet" href="plugin/highlight/monokai.css")
+    style.
+      .flcont {
+          border: 1px solid #DDDDDD;
+          width: 200px;
+          height: 200px;
+          position:relative;
+      }
+      .floating {
+          float: left;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          background-color: grey;
+      }
+  body
+    div(class="reveal")
+      div(class="slides")
+        section(data-background-image="img/linguistic_data_science_0.png" data-background-opacity=0.5)
+          h1 Fundamentals of Linguistic Data Science
+          h3 John P. McCrae - University of Galway
+          h5 Course at ESSLLI 2024
+        section(data-background-image="img/course_overview.png" data-background-opacity=0.5)
+          
+          h1 Course Overview
+        section
+          h2 Lectures
+          ul
+            li <b>Mon</b>: Fundamentals of Linguistic Data Science
+            li <b>Tue</b>: Syntax
+            li <b>Wed</b>: Semantics (incl. Large Language Models)
+            li <b>Thu</b>: Multilinguality
+            li <b>Fri</b>: Perspectives
+        section
+          h2 Course materials
+          ul
+            li 
+              a(href="https://jmccrae.github.io/lds-esslli24") Webpage - https://jmcrae.github.io/lds-esslli24
+            li Access to all code and slides through this URL
+        section(data-background-image="img/hands.png" data-background-opacity=0.5)
+          h2 Hands-on sections
+          ul
+            li We will use Python
+            li Very simple examples, no previous knowledge required
+            li You will need your laptop to follow along!
+        section(data-background-image="https://john.mccr.ae/me.jpg" data-background-opacity=0.5)
+          h2 About me
+          ul
+            li Assistant Professor at University of Galway, Ireland
+            li Researcher in NLP, Linked Data, Digital Humanities
+            li More at 
+              a(href="https://john.mccr.ae")
+                = 'https://john.mccr.ae'
+        section
+          h2 About you
+          a(href='https://www.menti.com/alddspo43ixx') 
+            = 'Go to https://www.menti.com/alddspo43ixx'
+        section(data-background-image="img/data_science_2.png" data-background-opacity=0.5)
+          h1 What is Data Science?
+        section(data-background-color="white")
+          img(src="img/data_science_venn.webp")
+        section
+          h2 What is Linguistic Data Science?
+          div(style="width:33%;float:left")
+            h4 Natural Language Processing
+            ul
+              li Builds system
+              li No linguistic knowledge needed!
+          div(style="width:33%;float:left")
+            h4 Linguistic Data Science
+            ul
+              li Uses machine learning
+              li Answers linguistic questions
+          div(style="width:33%;float:left")
+            h4 Quantitative (Corpus) Linguistics
+            ul
+              li Statistics
+              li Only corpus data
+        section(data-background-image="img/monster.png" data-background-opacity=0.5)
+          h2 Data Ingestion
+          ul
+            li Structured Data 
+              ul
+                li such as CSV, databases, XML
+            li Unstructured Data 
+              ul
+                li such as text, images, audio
+        section(data-background-image="img/books.png" data-background-opacity=0.5)
+          h2 Data Storage
+          ul
+            li Cleaning
+            li Deduplication
+            li ETL
+            li Databases
+        section(data-background-image="img/testtubes.png" data-background-opacity=0.5)
+          h2 Data Analysis
+          ul
+            li Data Exploration
+            li Predictive Analytics
+            li Machine Learning
+        section(data-background-image="img/people_talking_2.png" data-background-opacity=0.5)
+          h2 Communication
+          ul
+            li Visualisation
+            li Reporting
+            li Dashboards
+        section
+          h2 Examples of Data Science
+          ul
+            li Customer Analytics
+            li Supply Chain Optimisation
+            li Improving Patient Care
+        section(data-background-image="img/data_science_methods_1.png" data-background-opacity=0.5)
+          h1 Methods for Data Science
+        section(data-background-image="img/data_storage.png" data-background-opacity=0.5)
+          h1 Data Storage
+        section
+          h2 SQL
+          pre
+            code.
+              SELECT * FROM table WHERE condition
+          p.
+            Data is stored in a tables; can be difficult to represent complex data
+        section
+          h1 NoSQL
+          pre
+            code.
+              {
+                "name": "John McCrae",
+                "affiliation": "University of Galway",
+                "email": "john@mccr.ae"
+              }
+          p.
+            Flexible data structures; can be difficult to query
+        section
+          h2 Graph Databases
+          pre
+            code.
+              (John McCrae)-[:affiliation]->(University of Galway)
+              (John McCrae)-[:email]->(john@mccr.ae)
+          p.
+            More flexibility but can be very slow to query
+        section(data-background-image="img/robot_scaling.png" data-background-opacity=0.5)
+          h1 Scaling Tools
+        section(data-auto-animate data-background-image="img/Hadoop_logo_new.svg" data-background-opacity=0.3)
+          h2 Apache Hadoop
+          p Based on MapReduce
+          div(data-id="box" style="background:cornflowerblue;width:30%;border-radius:25px;margin: 0 auto") Word List
+        section(data-auto-animate)
+          h2 Map-Reduce
+          p(data-id="title") Splitting
+          div(data-id="box" style="background:cornflowerblue;width:30%;border-radius:25px;margin: 0 auto") aardvark
+          p ...
+          div(data-id="box2" style="background:cornflowerblue;width:30%;border-radius:25px;margin: 0 auto") zebra
+        section(data-auto-animate)
+          h2 Map-Reduce
+          p(data-id=title) Mapping (word length)
+          div(data-id="box" style="background:coral;width:30%;border-radius:25px;margin: 0 auto") 8
+          p ...
+          div(data-id="box2" style="background:coral;width:30%;border-radius:25px;margin: 0 auto") 5
+        section(data-auto-animate)
+          h2(data-id="title") Map-Reduce
+          p Reducing (average)
+          div(data-id="box" style="background:coral;width:30%;border-radius:25px;margin: 0 auto") 4.52
+        section
+          h2 Apache Spark
+          ul
+            li Based on Resilient Distributed Datasets (RDDs)
+            li Streaming and batch processing
+            img(src="img/spark_data_mapping.svg")
+
+        section(data-background-image="img/robot_analysis.png" data-background-opacity=0.5)
+          h1 Analytic Tools
+        section
+          h2 Jupyter/Colab
+          ul
+            li Go to 
+              a(href="https://colab.research.google.com")
+                = 'https://colab.research.google.com'
+            li Create a new notebook
+        section
+          h2 Pandas
+          ul
+            li Library for data science in Python
+            li Try the following
+            pre(style="width:100%")
+              code.
+               import pandas as pd
+               data = pd.read_csv("https://raw.github" +
+               "usercontent.com/cs109/2014_data/" +
+               "master/countries.csv")
+               data.describe() 
+        section
+          h2 Other languages
+          ul
+            li R - Very popular in statistics
+            li Julia - New fast language for data science
+            li Scala - Java-based functional programming
+            li Rust - Fast and safe systems programming
+        section(data-background-image="img/visualization.png" data-background-opacity=0.5)
+          h1 Visualisation Tools
+        section
+          h2 D3.js
+          a(href="https://observablehq.com/@d3/gallery" target="_blank") Gallery
+        section
+          h2 Matplotlib
+          pre
+            code.
+              import matplotlib.pyplot as plt
+              plt.hist(data["Region"])
+        section
+          h2 Seaborn
+          a(href="https://seaborn.pydata.org/examples/index.html") Gallery
+        section(data-background-image="img/python.png" data-background-opacity=0.5)
+          h1 Introduction to Python and Colab
+
+        section(data-background-image="img/natural_language_processing.png" data-background-opacity=0.5 data-background-position="top")
+          h1 Natural Language Processing
+        section
+          h2 NLP as a Black Box
+          img(src="img/nlp_bb1.svg")
+        section
+          h2 Sentiment Analysis
+          img(src="img/nlp_bb2.svg")
+        section
+          h2 Annotation
+          img(src="img/nlp_bb3.svg")
+        section
+          h2 Parsing
+          img(src="img/nlp_bb4.svg")
+        section
+          h2 Machine Translation
+          img(src="img/nlp_bb5.svg")
+        section
+          h2 Natural Language Generation
+          img(src="img/nlp_bb6.svg")
+        section
+          h2 Information Extraction
+          img(src="img/nlp_bb7.svg")
+        section(data-background-image="img/machine_learning_1.png" data-background-opacity=0.5)
+          h1 Machine Learning
+        section
+          h2 Supervised Learning
+          img(src="img/Supervised Learning.svg")
+        section
+          h2 Unsupervised Learning
+          img(src="img/unsupervised.webp")
+          small Source: https://towardsdatascience.com/k-means-a-complete-introduction-1702af9cd8c 
+        section
+          h2 Reinforcement Learning
+          div
+            img(src="img/Reinforcement_learning_diagram.svg" width="50%")
+          small Source: Wikipedia
+        section
+          h2 Deep Learning (pretrained models)
+          img(src="img/Pre-trained learning.svg")
+        section(data-background-image="img/linguistic_data_science_1.png" data-background-opacity=0.5)
+          h1 Summary
+        section
+          h2 Summary
+          ul
+            li Linguistic Data Science is application of data science to linguistics
+            li Answers linguistic questions using:
+            ul
+              li Big Data
+              li Natural Language Processing
+              li Machine Learning
+          small 
+            a(href="index.html") Back
+    script(src="dist/reveal.js")
+    script(src="plugin/notes/notes.js")
+    script(src="plugin/markdown/markdown.js")
+    script(src="plugin/highlight/highlight.js")
+    script.
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+              hash: true,
+              slideNumber: true,
+
+              // Learn about plugins: https://revealjs.com/plugins/
+              plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+

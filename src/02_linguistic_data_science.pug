@@ -1,0 +1,471 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title Linguistic Data Science
+    link(rel="stylesheet" href="dist/reset.css")
+    link(rel="stylesheet" href="dist/reveal.css")
+    link(rel="stylesheet" href="dist/theme/beige.css")
+    link(rel="stylesheet" href="plugin/highlight/monokai.css")
+    style.
+      .flcont {
+          border: 1px solid #DDDDDD;
+          width: 200px;
+          height: 200px;
+          position:relative;
+      }
+      .floating {
+          float: left;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          background-color: grey;
+      }
+  body
+    div(class="reveal")
+      div(class="slides")
+        section(data-background-image="img/linguistic_data_science_0.png" data-background-opacity=0.5)
+          h1 Linguistic Data Science
+          h3 John P. McCrae - University of Galway
+          h5 Course at ESSLLI 2024
+        section(data-background-image="img/corpus.png" data-background-opacity=0.5)
+          h1 Corpora and Data
+        section
+          h2 Types of Linguistic Data
+          ul  
+            li Corpora - collections of texts
+            li Lexicons - information about words
+            li Knowledge bases - structured information about the world
+            li Typological databases - information about languages
+        section
+          h2 Plain-text Corpora
+          ul
+            li Sources such as <a href="https://www.gutenberg.org/" target="_blank">Project Gutenberg</a>, <a href="https://en.wikipedia.org" target="_blank">Wikipedia</a>
+            li Curated corpora such as <a href="http://www.natcorp.ox.ac.uk/" target="_blank">British National Corpus</a> and <a href="https://anc.org/" target="_blank">Open American National Corpus</a>
+            li Massive web corpora such as <a href="https://github.com/allenai/allennlp/discussions/5056" target="_blank">C4</a>
+            ul
+              li 300GB of English data, 9.7TB total!
+        section
+          h2 Annotated Corpora
+          ul
+            li Corpora with syntactic, semantic and other annotations
+            li <a href="https://universaldependencies.org/">Universal Dependencies</a>
+            li <a href="https://catalog.ldc.upenn.edu/LDC2019T13">Penn Treebank</a>
+            li <a href="https://catalog.ldc.upenn.edu/LDC2015T13">PropBank</a>
+        section
+          h2 Universal Dependencies
+          table(style="font-size: 0.5em")
+            tr
+              th ID
+              th Form
+              th Lemma
+              th UPOS
+              th XPOS
+              th Head
+              th Dep
+            tr
+              td 1	
+              td The	
+              td the	
+              td DET	
+              td Definite=Def|PronType=Art	
+              td 2	
+              td det
+            tr
+              td 2	
+              td prevalence	
+              td prevalence	
+              td NOUN	
+              td Number=Sing	
+              td 0	
+              td root	
+            tr
+              td 3	
+              td of	
+              td of	
+              td ADP	
+              td _	
+              td 4	
+              td case
+            tr
+              td 4	
+              td discrimination	
+              td discrimination	
+              td NOUN	
+              td Number=Sing	
+              td 2	
+              td nmod
+            tr
+              td 5	
+              td across	
+              td across	
+              td ADP	
+              td _	
+              td 7	
+              td case
+            tr
+              td 6	
+              td racial	
+              td racial	
+              td ADJ	
+              td Degree=Pos	
+              td 7	
+              td amod
+            tr
+              td 7	
+              td groups	
+              td group	
+              td NOUN	
+              td Number=Plur	
+              td 2	
+              td nmod
+            tr
+              td 8	
+              td in	
+              td in	
+              td ADP	
+              td _	
+              td 10	
+              td case
+            tr
+              td 9	
+              td contemporary	
+              td contemporary	
+              td ADJ	
+              td Degree=Pos	
+              td 10	
+              td amod
+            tr
+              td 10	
+              td America	
+              td America	
+              td PROPN	
+              td Number=Sing	
+              td 2	
+              td nmod
+        section
+          h2 Parallel Corpora
+          ul
+            li <a href="https://opus.nlpl.eu/" target="_blank">OPUS</a> - many languages
+            li <a href="https://www.statmt.org/europarl/" target="_blank">Europarl</a> - 21 languages
+            li <a href="https://www.statmt.org/wmt20/" target="_blank">WMT</a> - 100+ languages
+        section
+          h2 Parallel Corpus Example
+          table(style="font-size: 0.5em")
+            tr
+              th English
+              th Irish
+            tr
+              td Monitoring of the Implementation of Certain Commitments in your Language Scheme 
+              td Tag: faireachán ar chur i bhfeidhm gealltanais áirithe de bhur scéim teanga
+            tr
+              td Hope you are keeping well.
+              td Beatha agus Sláinte.
+            tr
+              td Thank you for your co-operation on this matter. 
+              td Gabhaim buíochas leat as ucht do chomhoibriú ar an ábhar seo.
+            tr
+              td Kind regards, 
+              td Is mise, le meas, _______________ 
+        section
+          h2 Lexicons
+          ul
+            li <a href="https://en-word.net" target="_blank">Open English WordNet</a> - English
+            li <a href="https://babelnet.org/" target="_blank">BabelNet</a> - 271 languages
+            li <a href="https://framenet.icsi.berkeley.edu/fndrupal/" target="_blank">FrameNet</a> - English
+        section
+          h2 Knowledge Bases
+          ul
+            li <a href="https://www.wikidata.org/" target="_blank">Wikidata</a>
+            li <a href="https://www.dbpedia.org/" target="_blank">DBPedia</a>
+            li Many specific knowledge bases
+        section
+          h2 Typologies
+          ul
+            li <a href="https://wals.info/" target="_blank">World Atlas of Language Structures</a>
+        section(data-background-image="img/corpus_selection.png" data-background-opacity=0.5)
+          h1 Corpus Selection and Construction
+        section
+          h2 Corpus linguistics
+          p Analysis of corpus reveals hidden patterns in language
+          p New tools allow us to find new information hidden in the corpus
+        section(data-background-image="img/firth.png" data-background-opacity=0.5)
+          h2 Collocations
+          p Collocations are words that occur together
+          p Firth: "You shall know a word by the company it keeps"
+        section
+          h2 Corpus selection
+          div(style="width:50%;float:left")
+            ul
+              li Spoken/written
+              li Dialect
+              li Genre
+          div(style="width:50%;float:right")
+            ul
+              li Time period
+              li Size
+              li Multimodality
+        section
+          h2 Corpus annotations
+          ul
+            li Syntactic annotations
+            li Semantic annotations (e.g., word senses)
+            li Classifications (e.g., sentiment)
+            li Parallel texts
+        section
+          h2 Specialized corpora
+          ul
+            li Learner corpora
+            li Historical corpora
+            li Noisy user-generated text
+        section(data-background-image="img/morphology.png" data-background-opacity=0.5)
+          h1 Types, tokens and morphology
+        section
+          h2 Types and tokens
+          ul
+            li <b>Tokens</b> refer to the individual words in the text
+            li <b>Types</b> are the distinct words we see in the text
+          div(class="center")
+            p 
+              em I know that this is simple
+            p 6 <b>Tokens</b>, 5 <b>Types</b>
+        section
+          h2 Tokenization
+          img(src="img/tokenization.svg")
+          small Source: https://spacy.io/usage/spacy-101
+        section
+          h2 Non-linguistic tokens
+          ul
+            li Hashtags/mentions (#amazing, @john)
+            li URLs
+            li Emoticons (:-O, 😀)
+        section
+          h2 Compounds
+          ul
+            li <i>bookshelves</i>, <i>bedroom</i>, <i>policeman</i>
+            li <i>Flachbildschirmfernseher</i> (German: flat screen TV)
+            li <i>bestuurdersaansprakelijkheidsverzekering</i> (Dutch: drivers' liability insurance)
+        section(data-background-image="img/asian_languages.svg" data-background-opacity=0.5)
+          h2 Tokenization in Asian Languages
+          ul
+            li Chinese, Japanese and Thai do not use spaces at all
+            li Other languages (Vietnamese, Tibetan, ...) space every syllable
+            li Tokenization for these languages is non-trivial
+        section
+          h2 Aside: What is a word?
+          ul
+            li Occurs between spaces (and punctuation)
+            li Can be a single utterance
+            li Has a distinct meaning
+            li Syntactically free
+            li Has an inflectional paradigm (e.g., plural, past tense, genitive case)
+            li (Useful as a) headword in a dictionary
+          p Mostly overlapping definitions!
+        section
+          h2 Subword tokenization
+          p Maybe a human definition of word is not the best?
+          pre
+            code Super ##cali ##frag ##il ##istic ##ex ##pi ##ali ##do ##cious
+        section
+          h2 WordPiece (Wu et al., 2016)
+          ol 
+            li Initially use only characters as words
+            li Build a probability model on the corpus
+            li Merge two most probable words
+            li Repeat until limit of words is reached of likelihood is below a threshold
+        section
+          h2 Morphology
+          ul
+            li <b>Lemmatization</b>: Reduce words to their base form
+            li <b>Stemming</b>: Reduce words to their stem
+        section
+          h2 Morphology Examples
+          table
+            tr
+              th Word
+              th Lemma
+              th Stem
+            tr
+              th cars
+              th car
+              th car
+            tr
+              th caring
+              th care
+              th car
+            tr
+              th taught
+              th teach
+              th taught (!?)
+          p Stemming is not linguistically motivated
+        section
+          h2 Inflection and Derivation
+          ul 
+            li Inflection captures the lemma and the change that has happened to it
+            ul
+              li writing = write + PRESENT + PROGRESSIVE
+            li Derivation is how new words are formed
+            ul
+              li agreement = agree + MENT
+        section
+          h2 Morphological Analysis
+          ul
+            li English is <em>quite</em> simple
+            li Some languages (Chinese, ...) have no morphology
+            li In other languages <b>one</b> word can be a whole sentence
+            p وسيكتبونها /wasayaktubuwnahA/ 'and they will write it'
+        section
+          h1 Example: English Clitics
+        section
+          h2 Example: English Clitics
+          ul 
+            li Clitics are words that are pronounced as part of another word
+            li In particular we will look at <em>n't</em> 
+            li Does the use of more clitics indicate a more informal text?
+        section(data-background-image="img/social_media_1.png" data-background-opacity=0.5)
+          h1 Social Media Analytics
+        section
+          h2 Social Media - Enterprise
+          img(src="img/twitter_sentiment.webp")
+          small Image source: https://monkeylearn.com/blog/sentiment-analysis-of-twitter/ 
+        section
+          h2 Social Media - Politics
+          img(src="img/elections.jpg" width="70%")
+          small= "Image source: https://www.forbes.com/sites/waynerash/2020/09/29/new-big-data-sentiment-analysis-show-potential-biden-election-landslide/"
+        section
+          h2 Ethical Data Collection
+          ul
+            li Copyright
+            li Data Protection/Privacy
+            li Bias (gender, race, sexuality, ...)
+            li Represntativeness
+        section
+          h2 Data Collection
+          ul
+            li API
+            li Web Scraping
+            li Crowdsourcing
+            li Data Purchase
+        section
+          h2 Noisy User-Generated Content
+          ul
+            li Spelling
+            li Grammar
+            li Slang
+            li Emojis
+            li Code-mixing
+        section(data-background-image="img/emotions.png" data-background-opacity=0.5)
+          h1 Sentiment, Emotion, Sarcasm
+        section
+          h2 Sentiment Analysis
+          ul
+            li Predicting sentiment of text
+            li Binary (positive/negative) or graded (0-5)
+        section
+          h2 Challenges of Sentiment Analysis
+          ul
+            li Indirectness: "Although the product is disliked by many, it is still popular"
+            li Ambiguity: "The concert was crazy" vs. "The traffic was crazy"
+            li Irony: "I love it when my flight is delayed"
+            li Negation: "I don't like it"
+        section
+          h2 Lexicon Approaches
+          p Generate a lexicon of positive and negative words
+          p Use counts to evaluate sentiment
+          table
+            tr
+              th Positive
+              th Negative
+            tr
+              td good
+              td bad
+            tr
+              td great
+              td terrible
+            tr
+              td excellent
+              td awful
+            tr
+              td ...
+              td ...
+        section
+          h2 SentiWordNet
+          img(src="img/sentiwordnet.png")
+        section
+          h2 Machine Learning Approaches - Features
+          ul
+            li Sentiment features (sentiment lexicon)
+            li Linguistic features (n-grams, ...)
+            li Social Media features (hashtags, emoticons, …)
+            li Other features (negation)
+            li Feature selection and weighting (occurrence (binary), freq, PMI, TF-IDF)
+        section
+          h2 Machine Learning Approaches - Deep Learning
+          ul
+            li Deep neural networks (LSTM, transformer, ...)
+            li Pre-trained Language Models
+            li Prompt-based Learning
+        section
+          h2 Aspect-Based Sentiment Analysis
+          p "The camera’s focus was bad, but has a great size and is easy-to-use."
+          p Aspects:
+          ul
+            li Focus (negative)
+            li Size (positive)
+            li Ease-of-use (positive)
+        section
+          h2 Emotion Analysis
+          ul(style="font-size:0.9em")
+            li Emotion
+            ul
+              li angry, sad, joyful, fearful, ashamed, proud, elated
+            li Mood
+            ul
+              li cheerful, gloomy, irritable, listless, depressed, buoyant
+            li Interpersonal stances
+            ul
+              li friendly, flirtatious, distant, cold, warm, supportive, contemptuous
+            li Attitudes
+            ul
+              li liking, loving, hating, valuing, desiring
+            li Personality traits
+            ul
+              li nervous, anxious, reckless, morose, hostile, jealous
+        section
+          h2 Emotion models - Ekman
+          img(src="img/ekman.jpg" width="50%")
+          small Source: https://sites.tufts.edu/emotiononthebrain/2014/12/08/am-i-in-trouble-interpreting-facial-expressions/
+        section
+          h2 Emotion models - Plutchik
+          div
+            img(src="img/plutchik.webp" width="50%")
+          small Source: Machine Elf 1735 (public domain)
+        section
+          h2 Emotion models - Lövheim (VAD)
+          img(src="img/vad.jpg" width="50%")
+          small Source: Mitrut et al. (2019) Emotion Classification Based on Biophysical Signals and Machine Learning Techniques
+        section
+          h1 Hands-on: Sarcasm Detection
+        section(data-background-image="img/linguistic_data_science_1.png" data-background-opacity=0.5)
+          h1 Summary
+        section
+          h2 Summary
+          small 
+            a(href="index.html") Back
+    script(src="dist/reveal.js")
+    script(src="plugin/notes/notes.js")
+    script(src="plugin/markdown/markdown.js")
+    script(src="plugin/highlight/highlight.js")
+    script.
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+              hash: true,
+              slideNumber: true,
+
+              // Learn about plugins: https://revealjs.com/plugins/
+              plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+

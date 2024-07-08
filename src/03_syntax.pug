@@ -1,0 +1,328 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title Syntax for Linguistic Data Science
+    link(rel="stylesheet" href="dist/reset.css")
+    link(rel="stylesheet" href="dist/reveal.css")
+    link(rel="stylesheet" href="dist/theme/beige.css")
+    link(rel="stylesheet" href="plugin/highlight/monokai.css")
+    style.
+      .pos { padding-left:10px; padding-right:10px;margin-right:2px;border-radius:6px;} 
+      .np { background-color: aqua }
+      .det { background-color: blueviolet }
+      .noun { background-color: coral }
+      .sconj { background-color: crimson }
+      .aux { background-color: darkcyan }
+      .verb { background-color: darkseagreen }
+      .adp { background-color: goldenrod }
+      .verb { background-color: mediumorchid }
+      .np { background-color: peru; }
+      .vp { background-color: springgreen; }
+      .rel { background-color: tomato; }
+      .s { background-color: teal; }
+  body
+    div(class="reveal")
+      div(class="slides")
+        section(data-background-image="img/linguistic_syntax.png" data-background-opacity=0.5)
+          h1 Syntax
+          h3 John P. McCrae - University of Galway
+          h5 Course at ESSLLI 2024
+          img(src="img/uog.svg" style="position:absolute;left:70%;top:110%;width:450px;")
+        section(data-background-image="img/parts_of_speech.png" data-background-opacity=0.5)
+          h1 Part-of-speech analysis
+        section
+          h2 Part-of-speech tags
+          table(style="font-size: 0.45em")
+            tr
+              th Tag
+              th Description
+              th Example
+            tr
+              td ADJ 	 
+              td adjective
+              td yellow, big, international
+            tr
+              td ADP 	
+              td adposition
+              td with, in, at
+            tr
+              td ADV 	
+              td adverb
+              td quickly, yesterday, tomorrow
+            tr
+              td AUX 	
+              td auxiliary
+              td is, has (done), will (do)
+            tr
+              td CCONJ 	
+              td coordinating conjunction
+              td and, or, but
+            tr
+              td DET 	
+              td determiner
+              td a, an, the
+            tr
+              td INTJ 	
+              td interjection
+              td psst, ouch, bravo, hello
+            tr
+              td NOUN 	
+              td noun
+              td cat, tree, air, beauty
+            tr
+              td NUM 	
+              td numeral
+              td 1, 2017, one, seventy-seven, IV, MMXIV
+            tr
+              td PART 	
+              td particle
+              td 's, not
+            tr
+              td PRON 	
+              td pronoun
+              td I, you, he, she 
+            tr
+              td PROPN 	
+              td proper noun
+              td Mary, John, London, NATO, HBO
+            tr
+              td PUNCT 	
+              td punctuation
+              td ., (, ), ?
+            tr
+              td SCONJ 	
+              td subordinating conjunction
+              td if, while, that
+            tr
+              td SYM 	
+              td symbol
+              td $, %, §, ©, 😝
+            tr
+              td VERB 	
+              td verb
+              td work, type, run, speak
+            tr
+              td X 	
+              td other
+              td sfpksdpsxmsa
+        section
+          h2 Part-of-speech tagging
+          p Assign a part-of-speech tag to each token
+          table
+            tr
+              th Token
+              th POS
+            tr
+              td I
+              td PRON
+            tr
+              td am
+              td AUX
+            tr
+              td a
+              td DET
+            tr
+              td linguist
+              td NOUN
+        section(data-background-image="img/spacy.jpg" data-background-opacity=0.3)
+          h2 spaCy
+          p For our purposes, we'll use the spaCy library
+        section
+          h2 Example: English genitives
+          ul
+            li We can now look at the <em>'s</em> genitive
+            li Is this a clitic?
+            li Does the use of more genitives indicate a more informal text?
+        section(data-background-image="img/robot_parsing.png" data-background-opacity=0.5)
+          h1 Parsing
+        section
+          h2 Parsing
+          p Understand the syntactic structure of a sentence by means of the relationships between words
+          p 
+            em The <span style="color:red">girl</span>, who is playing with cars, <span style="color:red">likes</span> toast
+        section(data-auto-animate)
+          h2 Parsing as rewriting
+          div
+            span(data-id="sentence")
+              span(data-id="np1")
+                span(data-id="np2")
+                  span(data-id="w1" class="pos") The 
+                  span(data-id="w2" class="pos") girl,
+                span(data-id="rel1")
+                  span(data-id="w3" class="pos") who 
+                  span(data-id="w4" class="pos") is 
+                  span(data-id="w5" class="pos") playing 
+                  span(data-id="w6" class="pos") with 
+                  span(data-id="w7" class="pos") cars, 
+              span(data-id="vp1")
+                span(data-id="w8" class="pos") likes 
+                span(data-id="w9" class="pos") toast
+        section(data-auto-animate)
+          h2 Parsing as rewriting
+          div
+            span(data-id="sentence")
+              span(data-id="np1")
+                span(data-id="np2")
+                  span(data-id="w1" class="pos det") The 
+                  span(data-id="w2" class="pos noun") girl,
+                span(data-id="rel1")
+                  span(data-id="w3" class="pos sconj") who 
+                  span(data-id="w4" class="pos aux") is 
+                  span(data-id="w5" class="pos verb") playing 
+                  span(data-id="w6" class="pos adp") with 
+                  span(data-id="w7" class="pos noun") cars, 
+              span(data-id="vp1")
+                span(data-id="w8" class="pos verb") likes 
+                span(data-id="w9" class="pos noun") toast
+        section(data-auto-animate)
+          h2 Parsing as rewriting
+          div
+            span(data-id="sentence")
+              span(data-id="np1")
+                span(data-id="np2")
+                  span(data-id="w1" class="pos det") DET 
+                  span(data-id="w2" class="pos noun") NOUN
+                span(data-id="rel1")
+                  span(data-id="w3" class="pos sconj") SCONJ 
+                  span(data-id="w4" class="pos aux") AUX 
+                  span(data-id="w5" class="pos verb") VERB 
+                  span(data-id="w6" class="pos adp") ADP 
+                  span(data-id="w7" class="pos noun") NOUN 
+              span(data-id="vp1")
+                span(data-id="w8" class="pos verb") VERB 
+                span(data-id="w9" class="pos noun") NOUN
+        section(data-auto-animate)
+          h2 Parsing as rewriting
+          div
+            span(data-id="sentence")
+              span(data-id="np1")
+                span(data-id="np2" class="np")
+                  span(data-id="w1" class="pos") DET 
+                  span(data-id="w2" class="pos") NOUN
+                span(data-id="rel1" class="rel")
+                  span(data-id="w3" class="pos") SCONJ 
+                  span(data-id="w4" class="pos") AUX 
+                  span(data-id="w5" class="pos") VERB 
+                  span(data-id="w6" class="pos") ADP 
+                  span(data-id="w7" class="pos") NOUN 
+              span(data-id="vp1" class="vp")
+                span(data-id="w8" class="pos") VERB 
+                span(data-id="w9" class="pos") NOUN
+        section(data-auto-animate)
+          h2 Parsing as rewriting
+          div
+            span(data-id="sentence")
+              span(data-id="np1")
+                span(data-id="np2" class="pos np") NP
+                span(data-id="rel1" class="pos rel") REL
+              span(data-id="vp1" class="pos vp") VP
+        section(data-auto-animate)
+          h2 Parsing as rewriting
+          div
+            span(data-id="sentence")
+              span(data-id="np1" class="pos np") NP
+              span(data-id="vp1" class="pos vp") VP
+        section(data-auto-animate)
+          h2 Parsing as rewriting
+          div
+            span(data-id="sentence")
+              span(data-id="np1" class="pos s") S
+        section
+          h2 Phrase grammar
+          img(src="img/phrase_grammar.svg")
+        section
+          h2 Dependency grammar
+          img(src="img/dependency_grammar.svg")
+        section
+          h2 Syntactic ambiguity
+          img(src="img/syn_ambig.png")
+        section(data-background-image="img/bank_on_a_bank.png" data-background-opacity=0.5)
+          h1 Ambiguity
+          a(href="https://www.menti.com/nmv7zbqr9s") https://www.menti.com/nmv7zbqr9s
+        section
+          h2 Example: Placement of adverbs
+          ul
+            li <b>There is not such thing as an adverb!</b>
+            li Adverbs are a catch-all category covering several different usages
+            li Many have claimed that adverbs are special version of adjectives
+        section
+          h2 Example: Placement of adverbs
+          ul
+            li   We will examine if <em>ly</em> adverbs have a different usage pattern than other adverbs
+            li   We will define this by what they modify
+        section(data-background-image="img/robot_speaking.png" data-background-opacity=0.5)
+          h1 Language Usage
+        section
+          h2 Chunking
+          ul
+            li Parsing allows us to group words together as <b>phrases</b>
+            li We can also use simple (regular expression) patterns to extract <em>chunks</em>
+          pre
+            code(lang="python").
+              grammar = "NP: {&lt;DT&gt;?&lt;JJ&gt;*&lt;NN&gt;}"
+              cp = nltk.RegexpParser(grammar)
+              cp.parse(brown.tagged_sents()[0])
+          a(href="https://colab.research.google.com/drive/1mAf-nFaMoJ7SdOsPjDBoA_6LZUS_xB-j?usp=sharing") Colab Link
+        section
+          h2 Named Entities
+          ul
+            li Named entities are phrases that refer to specific entities
+            li Further specialised by type (person, location, organisation, etc.)
+            li We can extract these with spaCy
+          pre
+            code(lang="python").
+              doc = nlp("Apple is looking at buying U.K. startup")
+
+              for ent in doc.ents:
+                  print(ent.text, ent.start_char, ent.end_char, ent.label_)
+        section
+          h2 Multiword Expressions
+          ul
+            li  Multiword expressions are phrases that have a special meaning
+            li A large annotated corpora of MWEs is the PARSEME corpus
+            li 
+              a(href="https://gitlab.com/parseme/corpora/-/wikis/home") PARSEME corpus
+        section
+          h2 Concordances
+          p We can use the NLTK concordance function to find examples of a word in context
+          pre
+            code(lang="python").
+              corpus = gutenberg.words('melville-moby_dick.txt')
+              text = Text(corpus)
+              text.concordance("monstrous")
+        section
+          h2 Word Sketches
+          ul
+            li A one-page, automatic, corpus-derived summary of a word
+            li Used by Sketch Engine in lexicography
+          img(src="img/word_sketch.png")
+        section
+          h1 Example: Diachronic change
+        section(data-background-image="img/tree.png" data-background-opacity=0.5)
+          h1 Summary
+        section
+          h2 Summary
+          ul
+            li Corpus selection is key to answering linguistic research questions
+            li Modern NLP can analyse words, syntax, dependencies and language usage
+            li Concordance can reveal interesting patterns of language usage
+          small 
+            a(href="index.html") Back
+    script(src="dist/reveal.js")
+    script(src="plugin/notes/notes.js")
+    script(src="plugin/markdown/markdown.js")
+    script(src="plugin/highlight/highlight.js")
+    script.
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+              hash: true,
+              slideNumber: true,
+    
+              // Learn about plugins: https://revealjs.com/plugins/
+              plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    

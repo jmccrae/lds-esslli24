@@ -1,0 +1,414 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title Multilingual Linguistic Data Science
+    link(rel="stylesheet" href="dist/reset.css")
+    link(rel="stylesheet" href="dist/reveal.css")
+    link(rel="stylesheet" href="dist/theme/beige.css")
+    link(rel="stylesheet" href="plugin/highlight/monokai.css")
+    style.
+      .vertical-center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+      .tag { padding-left:10px; padding-right:10px;margin-right:2px;border-radius:6px;} 
+      .blue { background-color: mediumblue; color: white; }
+      .pink { background-color: hotpink; color: white; }
+      .green { background-color: seagreen; color: white; }
+      .yellow { background-color: goldenrod; color: white; }
+
+    div(class="reveal")
+      div(class="slides")
+        section(data-background-image="img/multilingual1.png" data-background-opacity=0.5)
+          h1 Multilinguality
+          h3 John P. McCrae - University of Galway
+          h5 Course at ESSLLI 2024
+          img(src="img/uog.svg" style="position:absolute;left:70%;top:110%;width:500px;")
+        section(data-background-image="img/machine_translation.png" data-background-opacity=0.5 data-background-position="top")
+          h1 Machine Translation
+        section
+          h2 History of Machine Translation
+          ul
+            li 1954 Georgetown-IBM experiment
+            li 1966 ALPAC report
+            li 1970s-1980s: Rule-based MT
+            li 1993 Statistical MT (IBM/Brown)
+            li 2000s: Statistical MT (Och/Koehn)
+            li 2014 Neural MT (Google)
+        section(data-background-image="img/google_translate.png" data-background-opacity=0.5)
+          h2 Machine Translation
+          p Market dominated by Google, Microsoft, Amazon
+          p Open-source alternatives: Moses, Marian, OpenNMT
+          p Some special-purpose systems: Apertium, Joshua
+        section
+          h2 Computer-Aided Translation
+          ul
+            li Translation Memory
+            li Translation suggestions
+            li Quality estimation
+            li Post-editing
+        section
+          h2 Bilingual Communication
+          ul
+            li Translation
+            li Interpreting
+            li Multilingual communication
+          p Still very challenging
+        section(data-background-image="img/translation_error_2.jpeg")
+        section(data-background-image="img/translation_error_3.jpg")
+        section(data-background-image="img/translation_error_1.webp")
+        section(data-background-image="img/translation_error_4.jpg")
+        section
+          h2 Why is MT so hard?
+          ul
+            li Translation depends on context
+            ul
+              li "Black Eye" is "<span style="color:blue;">blaues</span> Auge" (<em>blue eye</em>) in German and "ojo <span style="color:violet">morado</span>" (<em>violet eye </em>) in Spanish
+            li Subtle difference matter
+            ul
+              li "value" can mean "worth", "price" or "importance" in different contexts
+        section
+          h2 Reordering
+          img(src="img/jap_reordering1.svg")
+        section
+          h2 Reordering
+          img(src="img/jap_reordering2.svg")
+        section
+          h2 Long-distance dependencies
+          ul
+            li English: I saw the <span style="color:hotpink">movie</span> and <span style="color:mediumblue">it<span> was great!
+            li(class="fragment") German: Ich sah <span style="color:hotpink">den Film</span> und <span style="color:mediumblue">er (he)</span> was prima!
+            li(class="fragment") Spanish: Vi <span style="color:hotpink">la película</span> y <span style="color:mediumblue">ella (she)</span> fue súper!
+        section
+          h2 Semantic issues
+          ul
+            li John liked Michael, so he<sub style="font-size:0.5em">JOHN</sub> helped him<sub style="font-size:0.5em">MICHAEL</sub>
+            li John liked Michael, as he<sub style="font-size:0.5em">MICHAEL</sub> helped him<sub style="font-size:0.5em">JOHN</sub>
+        section
+          h2 Missing Information in Translation
+          ul
+            li English: "Cousin"
+            li German: "Vetter" (male) / "Cousine" (female)
+            li Chinese:
+            table(style="font-size:0.5em")
+              tr
+                td(style="width:6em") 堂兄 / 堂哥
+                td elder
+                td father's brother's son
+                td(style="width:6em")  表兄 /  表哥
+                td elder
+                td mother's sibling's or father's sister's son
+              tr
+                td  堂弟
+                td younger
+                td father's brother's son
+                td  表弟
+                td younger
+                td mother's sibling's or father's sister's son
+              tr
+                td  堂姐 / 堂姊
+                td elder
+                td father's brother's daughter
+                td  表姐 /  表姊
+                td elder
+                td mother's sibling's or father's sister's daughter
+              tr
+                td  堂妹
+                td younger
+                td father's brother's daughter
+                td  表妹
+                td younger
+                td mother's sibling's or father's sister's daughter
+        section
+          h1 Buzz Group
+          p Why is translation hard in your language?
+        section
+          h2 Under-resourced Languages
+          div(style="width:40%;float:left")
+            ul
+              li 7,000 languages world wide
+              li Google Translates supports ~100 languages
+              li Wikipedia exists for ~300 languages
+              li Even for those (e.g., Irish) translation is significantly worse
+          div(style="width:60%;float:left;")
+            img(src="img/adela-map.svg")
+        section
+          h2 Phrase-based MT
+          img(src="img/phrase_mt.svg" style="width:80%")
+        section
+          h2 Neural MT
+          img(src="img/neural_mt.svg")
+        section
+          h2 Prompt-based MT
+          img(src="img/chatgpt_translate.png")
+        section(data-background-image="img/celtic_robot.png" data-background-opacity=0.5 data-background-position="top")
+          h1 Under-resourced Languages
+        section
+          h2 What is under-resourced?
+          img(src="img/def_underresourced.svg")
+        section
+          h2 Parallel Corpora
+          img(src="img/parallel_corpora_chart.svg")
+        section
+          h2 Transfer Learning
+          img(src="img/mt_transfer.svg")
+        section
+          h2 Translation-based Transfer Learning
+          img(src="img/translate_transfer.svg")
+        section
+          h2 Parameter-sharing Transfer Learning
+          img(src="img/transfer_learning2.svg" width="60%")
+        section
+          h2 Language Adapters
+          img(src="img/language_adapters.png" width="60%")
+          small Source: Rathnayake et al., Adapter-based fine-tuning of pre-trained multilingual language models for code-mixed and code-switched text classification
+        section
+          h1 Code-mixing and Language Identification
+        section
+          h2 Code-mixing, switching
+          ul
+            li Extremely common in multilingual communities, especially online (3.5% of all tweets)
+            li Code-mixing: Matrix language with insertions from other languages (often English)
+            li Code-switching: changing between languages
+            li Loanwords: words from other languages (understandable to speakers without knowledge of the other language)
+        section
+          h2 Challenges for code-mixed language
+          ul
+            li Lack of data; most text is from noisy sources
+            li Many combinations of languages
+            li How to apply monolingual trained models to code-mixed texts?
+        section
+          h2 Methods for code-mixed language
+          ul
+            li Supervised learning (from scratch)
+            li Divide-and-conquer
+            li Translate to matrix language
+            li Zero-shot approach
+        section
+          h1 Hands-on: Language Identification
+        section(data-background-image="img/evaluation.png" data-background-opacity=0.5 data-background-position="top")
+          
+          h1 Evaluation of Machine Translation
+        section(data-auto-animate)
+          h2 No single correct translation
+          ul
+            li O: <span data-id="w1">Macau</span> <span data-id="w2">passed</span> legalization to <span data-id="w3">avoid</span> double tax.
+            li P1: <span data-id="w4">Macao</span> <span data-id="w5">adopted</span> bills to <span data-id="w6">avoidance</span> of double taxation
+            li P2: <span data-id="w7">Macao</span> <span data-id="w8">adopted</span> bills and <span data-id="w9">avoidance</span> of double taxation.
+            li P3: <span data-id="wa">Macao</span> <span data-id="wa">approved</span> bills and <span data-id="wb">avoidance</span> of double taxation
+
+        section(data-auto-animate)
+          h2 No single correct translation 
+          h3 Variants
+          ul
+            li O: <span data-id="w1">Macau</span> <span data-id="w2">passed</span> legalization to <span data-id="w3" style="color:hotpink">avoid</span> double tax.
+            li P1: <span data-id="w4">Macao</span> <span data-id="w5">adopted</span> bills to <span data-id="w6" style="color:hotpink">avoidance</span> of double taxation
+            li P2: <span data-id="w7">Macao</span> <span data-id="w8">adopted</span> bills and <span data-id="w9" style="color:hotpink">avoidance</span> of double taxation.
+            li P3: <span data-id="wa">Macao</span> <span data-id="wa">approved</span> bills and <span data-id="wb" style="color:hotpink">avoidance</span> of double taxation
+
+        section(data-auto-animate)
+          h2 No single correct translation 
+          h3 Spelling
+          ul
+            li O: <span data-id="w1" style="color:mediumblue">Macau</span> <span data-id="w2">passed</span> legalization to <span data-id="w3" style="color:hotpink">avoid</span> double tax.
+            li P1: <span data-id="w4" style="color:mediumblue">Macao</span> <span data-id="w5">adopted</span> bills to <span data-id="w6" style="color:hotpink">avoidance</span> of double taxation
+            li P2: <span data-id="w7" style="color:mediumblue">Macao</span> <span data-id="w8">adopted</span> bills and <span data-id="w9" style="color:hotpink">avoidance</span> of double taxation.
+            li P3: <span data-id="wa" style="color:mediumblue">Macao</span> <span data-id="wa">approved</span> bills and <span data-id="wb" style="color:hotpink">avoidance</span> of double taxation
+
+        section(data-auto-animate)
+          h2 No single correct translation 
+          h3 Synonyms
+          ul
+            li O: <span data-id="w1" style="color:mediumblue">Macau</span> <span data-id="w2" style="color:seagreen">passed</span> legalization to <span data-id="w3" style="color:hotpink">avoid</span> double tax.
+            li P1: <span data-id="w4" style="color:mediumblue">Macao</span> <span data-id="w5" style="color:seagreen">adopted</span> bills to <span data-id="w6" style="color:hotpink">avoidance</span> of double taxation
+            li P2: <span data-id="w7" style="color:mediumblue">Macao</span> <span data-id="w8" style="color:seagreen">adopted</span> bills and <span data-id="w9" style="color:hotpink">avoidance</span> of double taxation.
+            li P3: <span data-id="wa" style="color:mediumblue">Macao</span> <span data-id="wa" style="color:seagreen">approved</span> bills and <span data-id="wb" style="color:hotpink">avoidance</span> of double taxation
+        section
+          h2 Manual Evaluation
+          h4 Adequacy
+          ul
+            li Does the translation contain all the information in the source?
+            li Rated from (1=no meaning) to (5=all meaning)
+          h4 Fluency
+          ul
+            li Does the translation sound natural?
+            li Does it contain grammatical errors?
+            li Rated from (1=incomprehensible) to (5=perfect)
+        section
+          h2 <span style="color:mediumblue">BLEU</span> - BiLingual Evaluation Understudy
+          p First method with high correspondence between a machine's output and that of a human
+          p Standard evaluation for MT (still)
+          p Product of precision and a <em>brevity penalty</em>
+          ul
+            li Precision: how many of the machine's words are in the reference?
+            li Brevity penalty: how long is the machine's output compared to the reference?
+        section(data-auto-animate)
+          h2 Example - <span style="color:mediumblue">BLEU</span>
+          div(style="width:60%;float:left")
+            ul
+              li <b>Reference:</b> Israeli officials are responsible for airport security
+              li <b>System A:</b> Israeli officials responsibility of airport safety
+              li <b>System B:</b> Israeli officials are responsible
+          div(style="width:40%;float:left")
+            table(style="font-size:0.5em")
+              tr
+                th Metric
+                th System A
+                th System B
+              tr
+                td 1-gram precision
+                td 
+                td 
+              tr
+                td 2-gram precision
+                td 
+                td 
+              tr
+                td 3-gram precision
+                td 
+                td 
+              tr
+                td 4-gram precision
+                td 
+                td 
+              tr
+                td Brevity penalty
+                td 
+                td 
+        section(data-auto-animate)
+          h2 Example - <span style="color:mediumblue">BLEU-1</span>
+          div(style="width:60%;float:left")
+            ul
+              li <b>Reference:</b> Israeli officials are responsible for airport security
+              li <b>System A:</b> <span class="tag blue">Israeli</span> <span class="tag blue">officials</span> responsibility of <span class="tag blue">airport</span> safety
+              li <b>System B:</b> <span class="tag blue">Israeli</span> <span class="tag blue">officials</span> <span class="tag blue">are</span> <span class="tag blue">responsible</span>
+          div(style="width:40%;float:left")
+            table(style="font-size:0.5em")
+              tr
+                th Metric
+                th System A
+                th System B
+              tr
+                td 1-gram precision
+                td 2/6
+                td 4/4
+              tr
+                td 2-gram precision
+                td 
+                td 
+              tr
+                td 3-gram precision
+                td 
+                td 
+              tr
+                td 4-gram precision
+                td 
+                td 
+              tr
+                td Brevity penalty
+                td 
+                td 
+        section(data-auto-animate)
+          h2 Example - <span style="color:mediumblue">BLEU-2</span>
+          div(style="width:60%;float:left")
+            ul
+              li <b>Reference:</b> Israeli officials are responsible for airport security
+              li <b>System A:</b> <span class="tag pink">Israeli officials</span> responsibility of airport safety
+              li <b>System B:</b> <span class="tag pink">Israeli officials</span> <span class="tag pink">are responsible</span>
+          div(style="width:40%;float:left")
+            table(style="font-size:0.5em")
+              tr
+                th Metric
+                th System A
+                th System B
+              tr
+                td 1-gram precision
+                td 2/6
+                td 4/4
+              tr
+                td 2-gram precision
+                td 1/5
+                td 3/3
+              tr
+                td 3-gram precision
+                td 
+                td 
+              tr
+                td 4-gram precision
+                td 
+                td 
+              tr
+                td Brevity penalty
+                td 
+                td 
+        section(data-auto-animate)
+          h2 Example - <span style="color:mediumblue">BLEU-3,4</span> and Brevity Penalty
+          div(style="width:60%;float:left")
+            ul
+              li <b>Reference:</b> Israeli officials are responsible for airport security
+              li <b>System A:</b> Israeli officials responsibility of airport safety
+              li <b>System B:</b> <span class="tag green">Israeli officials are responsible</span>
+          div(style="width:40%;float:left")
+            table(style="font-size:0.5em")
+              tr
+                th Metric
+                th System A
+                th System B
+              tr
+                td 1-gram precision
+                td 2/6
+                td 4/4
+              tr
+                td 2-gram precision
+                td 1/5
+                td 3/3
+              tr
+                td 3-gram precision
+                td 0/4
+                td 2/2
+              tr
+                td 4-gram precision
+                td 0/3
+                td 1/1
+              tr
+                td Brevity penalty
+                td 6/7
+                td 4/7
+          p(style="font-size:0.5em") BLEU (System-A) = 0
+          p(style="font-size:0.5em") BLEU (System-B) = 4/7
+
+        section(data-background-image="img/multilingual2.png" data-background-opacity=0.5)
+          h1 Summary
+        section
+          h2 Summary
+          ul
+            li
+              a(href="https://slator.com/yes-now-they-claim-machines-outperform-human-translation-in-adequacy/") Is machine translation solved?
+            li Still a challenge for <b>most</b> of the world's languages
+            li Next billion internet users will speak even more languages
+          small 
+            a(href="index.html") Back
+
+    script(src="dist/reveal.js")
+    script(src="plugin/notes/notes.js")
+    script(src="plugin/markdown/markdown.js")
+    script(src="plugin/highlight/highlight.js")
+    script(src="plugin/math/math.js")
+    script.
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+              hash: true,
+              slideNumber: true,
+    
+              // Learn about plugins: https://revealjs.com/plugins/
+              plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+      });
+ 
+ 

@@ -1,0 +1,164 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title Perspectives on Linguistic Data Science
+    link(rel="stylesheet" href="dist/reset.css")
+    link(rel="stylesheet" href="dist/reveal.css")
+    link(rel="stylesheet" href="dist/theme/beige.css")
+    link(rel="stylesheet" href="plugin/highlight/monokai.css")
+
+    div(class="reveal")
+      div(class="slides")
+        section(data-background-image="img/perspectives.png" data-background-opacity=0.5)
+          h1(style="font-size:3.0em") Perspectives on Linguistic Data Science
+          h3 John P. McCrae - University of Galway
+          h5 Course at ESSLLI 2024
+          img(src="img/uog.svg" style="position:absolute;left:70%;top:110%;width:500px;")
+        section(data-background-image="img/distant_reading.png" data-background-opacity=0.5)
+          h1 Distant Reading
+        section
+          h2 Close vs Distance Reading
+          ul
+            li Close reading is the traditional way of reading a text
+            li Distant reading uses computational methods to analyse canons of text
+            li Term attributed to Franco Moretti (2000)
+          p(style="font-size:0.7em;") "So far as the engines of history are concerned, meaning does not matter. In principle, one could study the history of a literary tradition without reading any of literature. ... the main virtue of the computerized content analysis methods I use is that they save one from actually having to read the literature" - Martindale
+        section
+          h2 "The Great Unread"
+          ul
+            li Thousands of books published in 19th century England
+            li Only a few studied now by famous authors
+            li Computational techniques can reveal trends
+            ul
+              li Titles became shorter
+              li Text became less abstract
+        section
+          h4 Analysis methods for Distant Reading - Diachronic Frequency Analysis
+          img(src="img/presidents_freq.png" width="65%")
+          small Source: Figure 1.4.1 – The Atlantic’s “The Language of the State of the Union” © Benjamin Schmidt, Mitch Fraa, Chris Barna, Libby Bawcombe, Noah Gordon, Betsy Ebersole, Jennie Rothenberg Gritz 
+        section
+          h4 Analysis methods for Distant Reading - Lexical Diversity
+          img(src="img/hip_hop_vocab.png" width="90%")
+          small Source: Matt Daniels
+        section
+          h4 Analysis methods for Distant Reading - Topic Modelling
+          img(src="img/topic_modelling.png")
+        section
+          h2 Narrative Analysis
+          ul
+            li Content (topics, characters, events, ...)
+            li Structure (plot, character relationsships, ...)
+            li Discourse (narrator, style, ...)
+          p Approach: collect text, annotate, analyse
+        section(data-background-image="img/network_of_language.png" data-background-opacity=0.5) 
+          h1 Linguistic Linked Data
+        section
+          h2 Structured and Unstructured Data
+          ul
+            li Unstructuted data is text, images, audio, video, ...
+            li Structured data is data in a database
+            li Lots of knowledge, especially in graph form
+        section
+          h2 Wikidata
+          p Massive knowledge base
+          a(href="https://www.wikidata.org/wiki/Q437") Q437
+        section
+          h2 Linked Data
+          img(src="img/linked_data_principles.svg")
+        section
+          div(style="width:30%;float:left")
+            h2 Linked Open Data Cloud
+          div(style="width:70%;float:left")
+            img(src="img/lod-cloud-sm.jpg" width="80%")
+        section
+          div(style="width:30%;float:left")
+            h2 Linguistic Linked Open Data Cloud
+          div(style="width:70%;float:left")
+            img(src="img/linguistic-lod.png" width="80%")
+        section
+          h2 Promise of Linguistic Linked Data
+          ul
+            li Representation and Modelling
+            li Structural Interoperability
+            li Federation 
+            li Ecosystem 
+            li Expressivity 
+            li Conceptual Interoperability 
+            li Dynamic Import 
+        section
+          h2 Interoperability
+          p Different annotation schemes
+          table(style="font-size:0.7em;")
+            tr
+              td 			
+              td Susanne	
+              td Penn
+            tr
+              td The			
+              td AT			
+              td DT
+            tr
+              td Fulton		
+              td NP1s		
+              td NNP
+            tr
+              td County		
+              td NNL1cb		
+              td NNP
+            tr
+              td Grand		
+              td JJ			
+              td NNP
+            tr
+              td Jury		
+              td NN1c		
+              td NNP
+            tr
+              td said		
+              td VVDv		
+              td VBD
+            tr
+              td Friday		
+              td NPD1		
+              td NNP
+        section
+          h2 NLP Interchange Format
+          img(src="img/nif.png" width="80%")
+        section
+          h2 OntoLex-Lemon - Lexicon Model for Ontologies
+          img(src="img/ontolex.svg")
+        section(data-background-image="img/curtain_call.png" data-background-opacity=0.5)
+          h1 Summary
+        section
+          h2 Summary
+          ul
+            li Social media is an important data source (but be careful!)
+            li Sentiment and emotion analysis is achieving good performance
+            li Computers can now tackle the "great unread"
+            li Linking data can increase interoperability and usabilty
+        section
+          h2 Thank you for attending the course!
+          p Feel free to contact me at <a href="mailto:john@mccr.ae">john@mccr.ae</a> if you have any questions
+          small 
+            a(href="index.html") Back
+
+    script(src="dist/reveal.js")
+    script(src="plugin/notes/notes.js")
+    script(src="plugin/markdown/markdown.js")
+    script(src="plugin/highlight/highlight.js")
+    script(src="plugin/math/math.js")
+    script.
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+              hash: true,
+              slideNumber: true,
+    
+              // Learn about plugins: https://revealjs.com/plugins/
+              plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+      });
+ 
+ 
