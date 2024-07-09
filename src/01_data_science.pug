@@ -25,10 +25,11 @@ html(lang="en")
   body
     div(class="reveal")
       div(class="slides")
-        section(data-background-image="img/linguistic_data_science_0.png" data-background-opacity=0.5)
-          h1 Fundamentals of Linguistic Data Science
+        section(data-background-image="img/data_science.png" data-background-opacity=0.5)
+          h1 Fundamentals of Data Science
           h3 John P. McCrae - University of Galway
           h5 Course at ESSLLI 2024
+          img(src="img/uog.svg" style="float:left; position:absolute;left:70%;width:450px;")
         section(data-background-image="img/course_overview.png" data-background-opacity=0.5)
           
           h1 Course Overview
@@ -44,7 +45,7 @@ html(lang="en")
           h2 Course materials
           ul
             li 
-              a(href="https://jmccrae.github.io/lds-esslli24") Webpage - https://jmcrae.github.io/lds-esslli24
+              a(href="https://john.mccr.ae/lds-esslli24") Webpage - https://jmcrae.github.io/lds-esslli24
             li Access to all code and slides through this URL
         section(data-background-image="img/hands.png" data-background-opacity=0.5)
           h2 Hands-on sections
@@ -214,7 +215,7 @@ html(lang="en")
         section
           h2 Matplotlib
           pre
-            code.
+            code(class="language-python").
               import matplotlib.pyplot as plt
               plt.hist(data["Region"])
         section
@@ -225,13 +226,13 @@ html(lang="en")
         section
           h2 Basic Python
           pre(style="width:100%")
-            code.
+            code(class="language-python").
               print("Hello, World!")
           Python is a simple language to learn 
         section
           h2 Variables
           pre(style="width:100%")
-            code.
+            code(class="language-python").
               x = 5
               y = 3
               print(x + y)
@@ -239,7 +240,7 @@ html(lang="en")
         section
           h2 Control Structures
           pre(style="width:100%")
-            code.
+            code(class="language-python").
               if x > y:
                 print("x is greater than y")
               else:
@@ -248,7 +249,7 @@ html(lang="en")
         section
           h2 Functions
           pre(style="width:100%")
-            code.
+            code(class="language-python").
               def add(x, y):
                 return x + y
               print(add(5, 3))
@@ -256,7 +257,7 @@ html(lang="en")
         section
           h2 Batteries included
           pre(style="width:100%")
-            code.
+            code(class="language-python").
               import math
               print(math.sqrt(9))
           p Python has many libraries for common tasks
