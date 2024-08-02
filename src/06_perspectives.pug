@@ -15,43 +15,197 @@ html(lang="en")
           h1(style="font-size:3.0em") Perspectives on Linguistic Data Science
           h3 John P. McCrae - University of Galway
           h5 Course at ESSLLI 2024
-          img(src="img/uog.svg" style="float:left; position:absolute;left:70%;width:450px;")
-        section(data-background-image="img/distant_reading.png" data-background-opacity=0.5)
-          h1 Distant Reading
-        section
-          h2 Close vs Distance Reading
+          img(src="img/uog.svg" style="float:left; position:absolute;left:70%;width:450px;")        
+        section(data-background-image="img/evaluation.png" data-background-opacity=0.5 data-background-position="top")
+          
+          h1 Evaluation of Machine Translation
+        section(data-auto-animate)
+          h2 No single correct translation
           ul
-            li Close reading is the traditional way of reading a text
-            li Distant reading uses computational methods to analyse canons of text
-            li Term attributed to Franco Moretti (2000)
-          p(style="font-size:0.7em;") "So far as the engines of history are concerned, meaning does not matter. In principle, one could study the history of a literary tradition without reading any of literature. ... the main virtue of the computerized content analysis methods I use is that they save one from actually having to read the literature" - Martindale
-        section
-          h2 "The Great Unread"
+            li O: <span data-id="w1">Macau</span> <span data-id="w2">passed</span> legalization to <span data-id="w3">avoid</span> double tax.
+            li P1: <span data-id="w4">Macao</span> <span data-id="w5">adopted</span> bills to <span data-id="w6">avoidance</span> of double taxation
+            li P2: <span data-id="w7">Macao</span> <span data-id="w8">adopted</span> bills and <span data-id="w9">avoidance</span> of double taxation.
+            li P3: <span data-id="wa">Macao</span> <span data-id="wa">approved</span> bills and <span data-id="wb">avoidance</span> of double taxation
+
+        section(data-auto-animate)
+          h2 No single correct translation 
+          h3 Variants
           ul
-            li Thousands of books published in 19th century England
-            li Only a few studied now by famous authors
-            li Computational techniques can reveal trends
+            li O: <span data-id="w1">Macau</span> <span data-id="w2">passed</span> legalization to <span data-id="w3" style="color:hotpink">avoid</span> double tax.
+            li P1: <span data-id="w4">Macao</span> <span data-id="w5">adopted</span> bills to <span data-id="w6" style="color:hotpink">avoidance</span> of double taxation
+            li P2: <span data-id="w7">Macao</span> <span data-id="w8">adopted</span> bills and <span data-id="w9" style="color:hotpink">avoidance</span> of double taxation.
+            li P3: <span data-id="wa">Macao</span> <span data-id="wa">approved</span> bills and <span data-id="wb" style="color:hotpink">avoidance</span> of double taxation
+
+        section(data-auto-animate)
+          h2 No single correct translation 
+          h3 Spelling
+          ul
+            li O: <span data-id="w1" style="color:mediumblue">Macau</span> <span data-id="w2">passed</span> legalization to <span data-id="w3" style="color:hotpink">avoid</span> double tax.
+            li P1: <span data-id="w4" style="color:mediumblue">Macao</span> <span data-id="w5">adopted</span> bills to <span data-id="w6" style="color:hotpink">avoidance</span> of double taxation
+            li P2: <span data-id="w7" style="color:mediumblue">Macao</span> <span data-id="w8">adopted</span> bills and <span data-id="w9" style="color:hotpink">avoidance</span> of double taxation.
+            li P3: <span data-id="wa" style="color:mediumblue">Macao</span> <span data-id="wa">approved</span> bills and <span data-id="wb" style="color:hotpink">avoidance</span> of double taxation
+
+        section(data-auto-animate)
+          h2 No single correct translation 
+          h3 Synonyms
+          ul
+            li O: <span data-id="w1" style="color:mediumblue">Macau</span> <span data-id="w2" style="color:seagreen">passed</span> legalization to <span data-id="w3" style="color:hotpink">avoid</span> double tax.
+            li P1: <span data-id="w4" style="color:mediumblue">Macao</span> <span data-id="w5" style="color:seagreen">adopted</span> bills to <span data-id="w6" style="color:hotpink">avoidance</span> of double taxation
+            li P2: <span data-id="w7" style="color:mediumblue">Macao</span> <span data-id="w8" style="color:seagreen">adopted</span> bills and <span data-id="w9" style="color:hotpink">avoidance</span> of double taxation.
+            li P3: <span data-id="wa" style="color:mediumblue">Macao</span> <span data-id="wa" style="color:seagreen">approved</span> bills and <span data-id="wb" style="color:hotpink">avoidance</span> of double taxation
+        section
+          h2 Manual Evaluation
+          h4 Adequacy
+          ul
+            li Does the translation contain all the information in the source?
+            li Rated from (1=no meaning) to (5=all meaning)
+          h4 Fluency
+          ul
+            li Does the translation sound natural?
+            li Does it contain grammatical errors?
+            li Rated from (1=incomprehensible) to (5=perfect)
+        section
+          h2 <span style="color:mediumblue">BLEU</span> - BiLingual Evaluation Understudy
+          p First method with high correspondence between a machine's output and that of a human
+          p Standard evaluation for MT (still)
+          p Product of precision and a <em>brevity penalty</em>
+          ul
+            li Precision: how many of the machine's words are in the reference?
+            li Brevity penalty: how long is the machine's output compared to the reference?
+        section(data-auto-animate)
+          h2 Example - <span style="color:mediumblue">BLEU</span>
+          div(style="width:60%;float:left")
             ul
-              li Titles became shorter
-              li Text became less abstract
-        section
-          h4 Analysis methods for Distant Reading - Diachronic Frequency Analysis
-          img(src="img/presidents_freq.png" width="65%")
-          small Source: Figure 1.4.1 – The Atlantic’s “The Language of the State of the Union” © Benjamin Schmidt, Mitch Fraa, Chris Barna, Libby Bawcombe, Noah Gordon, Betsy Ebersole, Jennie Rothenberg Gritz 
-        section
-          h4 Analysis methods for Distant Reading - Lexical Diversity
-          img(src="img/hip_hop_vocab.png" width="90%")
-          small Source: Matt Daniels
-        section
-          h4 Analysis methods for Distant Reading - Topic Modelling
-          img(src="img/topic_modelling.png")
-        section
-          h2 Narrative Analysis
-          ul
-            li Content (topics, characters, events, ...)
-            li Structure (plot, character relationsships, ...)
-            li Discourse (narrator, style, ...)
-          p Approach: collect text, annotate, analyse
+              li <b>Reference:</b> Israeli officials are responsible for airport security
+              li <b>System A:</b> Israeli officials responsibility of airport safety
+              li <b>System B:</b> Israeli officials are responsible
+          div(style="width:40%;float:left")
+            table(style="font-size:0.5em")
+              tr
+                th Metric
+                th System A
+                th System B
+              tr
+                td 1-gram precision
+                td 
+                td 
+              tr
+                td 2-gram precision
+                td 
+                td 
+              tr
+                td 3-gram precision
+                td 
+                td 
+              tr
+                td 4-gram precision
+                td 
+                td 
+              tr
+                td Brevity penalty
+                td 
+                td 
+        section(data-auto-animate)
+          h2 Example - <span style="color:mediumblue">BLEU-1</span>
+          div(style="width:60%;float:left")
+            ul
+              li <b>Reference:</b> Israeli officials are responsible for airport security
+              li <b>System A:</b> <span class="tag blue">Israeli</span> <span class="tag blue">officials</span> responsibility of <span class="tag blue">airport</span> safety
+              li <b>System B:</b> <span class="tag blue">Israeli</span> <span class="tag blue">officials</span> <span class="tag blue">are</span> <span class="tag blue">responsible</span>
+          div(style="width:40%;float:left")
+            table(style="font-size:0.5em")
+              tr
+                th Metric
+                th System A
+                th System B
+              tr
+                td 1-gram precision
+                td 2/6
+                td 4/4
+              tr
+                td 2-gram precision
+                td 
+                td 
+              tr
+                td 3-gram precision
+                td 
+                td 
+              tr
+                td 4-gram precision
+                td 
+                td 
+              tr
+                td Brevity penalty
+                td 
+                td 
+        section(data-auto-animate)
+          h2 Example - <span style="color:mediumblue">BLEU-2</span>
+          div(style="width:60%;float:left")
+            ul
+              li <b>Reference:</b> Israeli officials are responsible for airport security
+              li <b>System A:</b> <span class="tag pink">Israeli officials</span> responsibility of airport safety
+              li <b>System B:</b> <span class="tag pink">Israeli officials</span> <span class="tag pink">are responsible</span>
+          div(style="width:40%;float:left")
+            table(style="font-size:0.5em")
+              tr
+                th Metric
+                th System A
+                th System B
+              tr
+                td 1-gram precision
+                td 2/6
+                td 4/4
+              tr
+                td 2-gram precision
+                td 1/5
+                td 3/3
+              tr
+                td 3-gram precision
+                td 
+                td 
+              tr
+                td 4-gram precision
+                td 
+                td 
+              tr
+                td Brevity penalty
+                td 
+                td 
+        section(data-auto-animate)
+          h2 Example - <span style="color:mediumblue">BLEU-3,4</span> and Brevity Penalty
+          div(style="width:60%;float:left")
+            ul
+              li <b>Reference:</b> Israeli officials are responsible for airport security
+              li <b>System A:</b> Israeli officials responsibility of airport safety
+              li <b>System B:</b> <span class="tag green">Israeli officials are responsible</span>
+          div(style="width:40%;float:left")
+            table(style="font-size:0.5em")
+              tr
+                th Metric
+                th System A
+                th System B
+              tr
+                td 1-gram precision
+                td 2/6
+                td 4/4
+              tr
+                td 2-gram precision
+                td 1/5
+                td 3/3
+              tr
+                td 3-gram precision
+                td 0/4
+                td 2/2
+              tr
+                td 4-gram precision
+                td 0/3
+                td 1/1
+              tr
+                td Brevity penalty
+                td 6/7
+                td 4/7
+          p(style="font-size:0.5em") BLEU (System-A) = 0
+          p(style="font-size:0.5em") BLEU (System-B) = 4/7
         section(data-background-image="img/network_of_language.png" data-background-opacity=0.5) 
           h1 Linguistic Linked Data
         section
